@@ -14,6 +14,27 @@
             <input required placeholder = "URL" type="url" name="fullUrl" id="fullUrl" class="form-control mr-2">
             <button class="btn btn-success" type="submit">Shrink URL</button>
         </form>
+
+
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Full URL</th>
+                    <th>Shortend URL</th>
+                    <th>Analyitcs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shortUrls.forEach(shortUrl =>{ %>
+                    <tr>
+                        <td><a href="<%= shortUrl.actualUrl  %> "> <%= shortUrl.actualUrl  %> </a></td>
+                        <td><a href="<%= shortUrl.shortUrl  %> "> <%= shortUrl.shortUrl  %> </a></td>
+                        <td><%= shortUrl.count%></td>
+                    </tr>
+                <% }); %>
+
+            </tbody>
+        </table>
     </div>
     
 </body>

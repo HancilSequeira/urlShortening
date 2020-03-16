@@ -10,8 +10,25 @@ mongoose.connect('mongodb://mongo_docker/UrlShortner', {
 app.set('view engine','ejs');
 app.use(express.urlencoded({ extended:false }));
 
-app.get('/',(req, res) => {
-    res.render('index')
+app.get('/',async(req, res) => {
+    const shortUrls = await shortUrl.find();
+    res.render('index', { shortUrls: shortUrls })
+});
+
+app.get('/:url',async(req, res) => {
+    try {
+        const url = await shortUrl.findOne({ shortUrl: req.params.url });
+        if(!url){
+            res.sendStatus(404);
+        } else {
+            url.count++;
+            console.log(shortUrl);
+            url.save();
+            res.redirect(url.actualUrl);
+        }
+    } catch(e) {
+        console.log('e', e);
+    }
 });
 
 app.post('/short-url',async(req, res) => {

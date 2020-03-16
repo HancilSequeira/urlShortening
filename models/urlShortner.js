@@ -12,6 +12,10 @@ const urlShortner = new Schema({
         required: true,
         default: shortId.generate()
     },
+    count:{
+        type: Number,
+        default: 0
+    },
     created_at : Date,
     updated_at: Date
 
