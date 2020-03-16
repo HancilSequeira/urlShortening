@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const shortUrl = require('./models/urlShortner');
 
-mongoose.connect('mongodb://mongo_docker/UrlShortner', { 
+mongoose.connect('mongodb://localhost/UrlShortner', { 
     useUnifiedTopology: true,
     useNewUrlParser: true
 });
